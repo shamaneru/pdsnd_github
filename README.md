@@ -8,7 +8,7 @@ Profiling Bikeshare
 The project is about the statistical understanding of bikeshare data. It is developed as an interactive system, where users decide the data and filter for dataset to analyse.
 
 ### Files used
-Include the files used
+chicago.csv, new_york_city-city.csv and washington.csv
 
 ### Credits
 It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
