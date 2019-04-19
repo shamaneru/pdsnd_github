@@ -5,7 +5,7 @@ Both were finally created April 19, 2019
 Profiling Bikeshare
 
 ### Description
-Describe what your project is about and what it does
+The project is about the statistical understanding of bikeshare data. It is developed as an interactive system, where users decide the data and filter for dataset to analyse.
 
 ### Files used
 Include the files used
