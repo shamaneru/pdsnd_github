@@ -258,7 +258,7 @@ def user_stats(cities_df):
         print('Count of Gender:\n', sex)
         print()
     else:
-        print('gender column not provided in the washington_csv file.')
+        print('{} column not provided in the washington_csv file.'.format('gender')) 
 
     # display earliest, most recent, and most common year of birth
     print('\nCalculating birth year Stats...\n')
