@@ -22,27 +22,27 @@ def get_filters():
         if city in cities:
             break
         else:
-            print('incorrect input entered for city! please make another attempt!')
-    
+            print('{} input entered for {}! please make another attempt!'.format('incorrect', 'city'))
+
     while True:
         months = ['all', 'january', 'february', 'march', 'april', 'may', 'june']
         month = input("\nMONTH:\nenter the month to filter by (option from all, january, february, march, april, may, june),\n'all' to apply no month filter:\n").casefold()
         if month in months:
             break
-        else: 
+        else:
             print('incorrect input entered for month! please make another attempt!')
-    
+
     while True:
         days = ['all', 'sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday']
-        day = input("\nDAY:\nenter the day to filter by (option from  all, sunday, monday, tuesday, wednesday, thursday, friday, saturday),\n'all' to apply no day filter:\n").casefold()  
+        day = input("\nDAY:\nenter the day to filter by (option from  all, sunday, monday, tuesday, wednesday, thursday, friday, saturday),\n'all' to apply no day filter:\n").casefold()
         if day in days:
             break
-        else: 
+        else:
             print('incorrect input entered for day! please make another attempt!')
 
     print('-'*40)
     return city, month, day
-    
+
 def load_data(city, month, day):
     """
     Loads data for the specified city and filters by month and day if applicable.
@@ -57,9 +57,9 @@ def load_data(city, month, day):
     # load data file into a dataframe
     cities_df = pd.read_csv(CITY_DATA[city])
     # convert the Start Time column to datetime
-    cities_df['Start Time'] = pd.to_datetime(cities_df['Start Time']) 
+    cities_df['Start Time'] = pd.to_datetime(cities_df['Start Time'])
     # extract month from Start Time to create new column
-    cities_df['month'] = cities_df['Start Time'].dt.month    
+    cities_df['month'] = cities_df['Start Time'].dt.month
     # extract day of week from Start Time to create new column
     cities_df['day_of_week'] = cities_df['Start Time'].dt.weekday_name
 
@@ -78,16 +78,16 @@ def load_data(city, month, day):
         cities_df = cities_df[cities_df['day_of_week'] == day.title()]
 
     return cities_df
-    
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
 def data_file_info(cities_df):
     """Displays information on the accessed csv_file."""
-    
+
     print('\nDisplaying the file information content ...\n')
     start_time = time.time()
-     
+
     object_type = type(cities_df)
     print('The type of object:', object_type)
     print()
@@ -95,29 +95,29 @@ def data_file_info(cities_df):
     object_columns = cities_df.columns
     print('Columns in object:\n', object_columns)
     print()
-    
+
     object_elements = cities_df.dtypes
     print('Types of elements in object:\n', object_elements)
     print()
-    
+
     object_shape = cities_df.shape
     print('Shape of object:', object_shape)
     print()
-    
+
     object_dimension = cities_df.ndim
     print('Dimension of object:', object_dimension)
     print()
-    
+
     object_size = cities_df.size
     print('Size of object:', object_size)
     print()
-    
+
     user_request = input('\ndo you want to view the data\n')
     if user_request.lower() == 'yes':
         nrows = cities_df.shape[0]
         print('\nINITIAL VIEW:\nthe first 5 rows are:\n')
         print(cities_df[0:5])
-        
+
         totalViewed = 5
         user_request_2 = input('\ndo you want to view more data? enter?\n')
         while(user_request_2.lower() == 'yes'):
@@ -129,10 +129,10 @@ def data_file_info(cities_df):
             user_request_2 = input('\ndo you want to view more data?\n')
             totalViewed += 5
             print()
-        
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
-          
+
 def time_stats(cities_df):
     """Displays statistics on the most frequent times of travel."""
 
@@ -184,7 +184,7 @@ def station_stats(cities_df):
     print()
 
     # knowing the frequently used end station
-    common_end_sta = cities_df['End Station'].mode()[0]  
+    common_end_sta = cities_df['End Station'].mode()[0]
     common_end_sta_count = cities_df['End Station'].value_counts().max()
     print('end station:', common_end_sta)
     print('end station count:', common_end_sta_count)
@@ -215,27 +215,27 @@ def trip_duration_stats(cities_df):
     count_travel_time = cities_df['Trip Duration'].count()
     print('count:', count_travel_time)
     print()
-    
+
     # display mean travel time
     average_travel_time = cities_df['Trip Duration'].mean()
     print('average:', str(average_travel_time) + ' secs')
     print()
-    
+
     # display standard deviation travel time
     std_travel_time = cities_df['Trip Duration'].std()
     print('standard deviation:', str(std_travel_time) + ' secs')
     print()
-    
+
      # display minimum travel time
     min_travel_time = cities_df['Trip Duration'].min()
     print('minimum:', str(min_travel_time) + ' secs')
     print()
-    
+
     # display maximum travel time
     max_travel_time = cities_df['Trip Duration'].max()
     print('maximum:', str(max_travel_time) + ' secs')
     print()
-        
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -247,14 +247,14 @@ def user_stats(cities_df):
     object_columns = cities_df.columns
 
     # display counts of user types
-    user_types = cities_df['User Type'].value_counts()    
+    user_types = cities_df['User Type'].value_counts()
     print('count of user types:\n', user_types)
     print()
 
     # display counts of gender
     print('\nCalculating gender Stats...\n')
-    if('Gender' in object_columns): 
-        sex = cities_df['Gender'].value_counts()  
+    if('Gender' in object_columns):
+        sex = cities_df['Gender'].value_counts()
         print('Count of Gender:\n', sex)
         print()
     else:
@@ -264,22 +264,22 @@ def user_stats(cities_df):
     print('\nCalculating birth year Stats...\n')
     if('Birth Year' in object_columns):
         # print earliest year of birth
-        earliest_birth_year = cities_df['Birth Year'].min()    
+        earliest_birth_year = cities_df['Birth Year'].min()
         print('Earliest year of birth:', earliest_birth_year)
         print()
-        
+
         # print latest year of birth
-        latest_birth_year = cities_df['Birth Year'].max()    
+        latest_birth_year = cities_df['Birth Year'].max()
         print('Latest year of birth:', latest_birth_year)
         print()
-        
+
         # print most common year of birth
-        popular_birth_year = cities_df['Birth Year'].mode()[0]    
+        popular_birth_year = cities_df['Birth Year'].mode()[0]
         print('popular year of birth:', popular_birth_year)
         print()
     else:
         print('whoa! the birth year column also not included in the washington_csv file.')
-               
+
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
 
@@ -287,7 +287,7 @@ def main():
     while True:
         city, month, day = get_filters()
         cities_df = load_data(city, month, day)
-        
+
         data_file_info(cities_df)
         time_stats(cities_df)
         station_stats(cities_df)
