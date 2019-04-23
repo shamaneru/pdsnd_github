@@ -14,3 +14,7 @@ chicago.csv, new_york_city-city.csv and washington.csv
 It's important to give proper credit. Add links to any repo that inspired you or blogposts you consulted.
 https://stackoverflow.com/
 https://help.github.com/en/articles/syncing-a-fork
+
+### Appreciation
+I am using this moment and medium to appreciate all those in Udacity's team that made this program
+to become a reality and worthwhile for me.
