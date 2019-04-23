@@ -258,7 +258,7 @@ def user_stats(cities_df):
         print('Count of Gender:\n', sex)
         print()
     else:
-        print('{} column not provided in the washington_csv file.'.format('gender')) 
+        print('{} column not provided in the washington_csv file.'.format('gender'))
 
     # display earliest, most recent, and most common year of birth
     print('\nCalculating birth year Stats...\n')
@@ -278,7 +278,7 @@ def user_stats(cities_df):
         print('popular year of birth:', popular_birth_year)
         print()
     else:
-        print('whoa! the birth year column also not included in the washington_csv file.')
+        print('whoa! the {} column also not included in the {} file.'.format('Birth Year', 'washington_csv'))
 
     print("\nThis took %s seconds." % (time.time() - start_time))
     print('-'*40)
